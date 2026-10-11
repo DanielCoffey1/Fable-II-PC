@@ -28,6 +28,7 @@
 
 #include "alloc_watch.h"
 #include "dir_manifest_heal.h"
+#include "fable2_address_scan.h"
 #include "fable2_config.h"
 #include "fable2_patches.h"
 // #include "fable2_deadbeef_overlay.h"
@@ -389,6 +390,9 @@ class Fable2App : public rex::ReXApp {
   // (loaded earlier, in OnPostInitLogging).
   void OnPostLoadXexImage() override {
     fable2::patches::ApplyAll(runtime()->memory(), PPCImageConfig);
+    // Lets the address-scan hook (src/core/fable2_address_scan.cpp) read the
+    // guest page tables.
+    fable2::addressscan::SetMemory(runtime()->memory());
   }
 
   // Startup integrity check: this build was recompiled against a specific
