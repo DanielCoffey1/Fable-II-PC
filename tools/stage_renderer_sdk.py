@@ -43,6 +43,11 @@ def main():
         shutil.copy2(path, output / "lib" / path.name)
     for name in (f"{runtime}.dll", f"{plugin}.dll"):
         shutil.copy2(native / name, output / "bin" / name)
+    # Carry the PDBs (when present) so the host build can stage them next to
+    # the exe for debugger/profiler symbolization.
+    for name in (f"{runtime}.pdb", f"{plugin}.pdb"):
+        if (native / name).is_file():
+            shutil.copy2(native / name, output / "bin" / name)
     for name in ("rex_app.cpp", "windowed_app_main_sdl.cpp"):
         shutil.copy2(source / "src/ui" / name, output / "share/rexglue" / name)
     revision = subprocess.check_output(["git", "-C", str(source), "rev-parse", "HEAD"], text=True).strip()

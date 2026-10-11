@@ -30,9 +30,11 @@ if not defined OFFICIAL_ARG if not exist "%OFFICIAL%\bin\rexglue.exe" (
   call "%~dp0setup_sdk.cmd" || exit /b 1
 )
 python "%~dp0prepare_runtime_sdk.py" "%SOURCE%" || exit /b 1
+rem -g: always emit ReXGlue PDBs (Release + -g keeps production codegen but
+rem produces full-symbol PDBs the fable_2 build stages next to the exe).
 cmake -S "%SOURCE%" -B "%BUILD%" -G Ninja ^
   -DCMAKE_BUILD_TYPE=%CONFIGURATION% -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ ^
-  -DCMAKE_C_FLAGS=-march=x86-64-v2 -DCMAKE_CXX_FLAGS=-march=x86-64-v2 ^
+  -DCMAKE_C_FLAGS="-march=x86-64-v2 -g" -DCMAKE_CXX_FLAGS="-march=x86-64-v2 -g" ^
   -DREXGLUE_USE_D3D12=ON -DREXGLUE_USE_VULKAN=OFF ^
   -DREXGLUE_ENABLE_TRACY=OFF -DREXGLUE_ENABLE_FIDELITYFX=OFF ^
   -DREXGLUE_BUILD_TESTS=OFF || exit /b 1
