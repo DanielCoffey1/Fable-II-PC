@@ -33,3 +33,11 @@ Do not commit disc images, game assets, extracted executables, saves, credential
 ## Experimental stutter investigation
 
 A separate `profiles/smooth-60-batched` variant changes only hotfunc_yield_every from 1 to 16. It uses the existing upstream runtime option, without rebuilding engine code. The original smooth-60 profile remains available for rollback. Existing logs do not prove shader compilation is responsible for individual hitches; present-gate suppression counts are not FPS measurements. Validate this variant in gameplay before adopting it as the default.
+
+## Progression hitches and diagnostic correction
+
+The yield-batching experiment did not resolve the reported stutters and the playable installation was returned to the smooth-60 baseline (`hotfunc_yield_every = 1`). The experimental profile is retained for reference only.
+
+The upstream FPS meter contained `if (n == 1 || elapsed >= 5 seconds)` and reset its sample counter inside that block. Consequently every next frame had n == 1 and flushed a log line, contrary to its intended five-second window. Removed that condition and seeded the initial time window before computing elapsed time. This source correction has not been compiled into the installed upstream release. FPS logging is disabled for normal play by launching without FABLE2_FPS_METER.
+
+Upstream docs/RUNTIME_FIXES.md explains that async pipeline waiting can stall the first use of a shader pipeline. Keep that correctness behavior enabled and preserve caches; do not claim that every reported hitch is shader compilation without a correlated trace. Compare a newly visited route with the same route after revisiting or reloading. Repeated warm-route stalls need per-frame CPU/GPU and storage profiling rather than more unmeasured settings changes.

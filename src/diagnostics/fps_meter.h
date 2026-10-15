@@ -128,7 +128,7 @@ extern "C" void MainRenderLoop_82B9CD68(PPCContext& ctx, uint8_t* base) {
     if (start == 0)
       window_start_us.compare_exchange_strong(start, now_us);
     const uint64_t n = window_calls.fetch_add(1, std::memory_order_relaxed) + 1;
-    if (n == 1 || (now_us - start) >= 5'000'000) {
+    if ((now_us - start) >= 5'000'000) {
       window_calls.store(0, std::memory_order_relaxed);
       window_start_us.store(now_us, std::memory_order_relaxed);
       const double secs = (now_us - start) / 1'000'000.0;
