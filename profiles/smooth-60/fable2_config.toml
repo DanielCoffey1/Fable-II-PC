@@ -137,4 +137,3 @@ dog_fur_depth_bias = true
 # every call); 0 = never yield; larger = fewer context switches.
 # Default: 1
 hotfunc_yield_every = 1
-

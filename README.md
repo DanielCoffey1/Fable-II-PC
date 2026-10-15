@@ -625,4 +625,3 @@ way. Check before committing name changes:
 ```
 python tools/check_manifest_collisions.py
 ```
-
