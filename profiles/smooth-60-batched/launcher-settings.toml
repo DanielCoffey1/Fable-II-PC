@@ -1,0 +1,13 @@
+# Smooth 60 FPS baseline
+resolution = ""
+window_width = 2560
+window_height = 1440
+resolution_scale = 1
+anisotropic_override = -1
+swap_post_effect = "none"
+vsync = true
+frame_limit = 60
+# Disable the original two-vblank/30 FPS pacing.
+guest_vblank_pacing = false
+fullscreen = true
+fullscreen_exclusive = false

@@ -29,3 +29,7 @@ Supply supported `default.xex` and `data/` locally, as documented upstream. They
 5. Keep future trilogy launcher work separate from each game's porting work.
 
 Do not commit disc images, game assets, extracted executables, saves, credentials, or generated binaries. Keep the upstream license and attribution when sharing code.
+
+## Experimental stutter investigation
+
+A separate `profiles/smooth-60-batched` variant changes only hotfunc_yield_every from 1 to 16. It uses the existing upstream runtime option, without rebuilding engine code. The original smooth-60 profile remains available for rollback. Existing logs do not prove shader compilation is responsible for individual hitches; present-gate suppression counts are not FPS measurements. Validate this variant in gameplay before adopting it as the default.

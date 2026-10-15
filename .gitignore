@@ -82,3 +82,6 @@ logs/
 /fable_2.toml
 /launcher-settings.toml
 /fable2_config.toml
+
+# Runtime FPS diagnostic output
+fps_meter.log
