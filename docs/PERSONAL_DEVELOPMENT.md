@@ -1,0 +1,31 @@
+# Development notes
+
+## Provenance
+
+Upstream: https://github.com/himdo/Fable-2-Recomp
+Starting release: 1.5.0
+Starting commit: e12f40d7faa30c6c816008135e67fcd94f055824
+The upstream README below the personal introduction remains the build reference.
+
+## Local layout
+
+Source checkout: Documents\Fable 2\Fable-II-PC
+Playable release: Documents\Fable 2\Recompiled\Fable 2 1.5.0
+Keep source and the playable installation separate. This checkout has not been compiled locally yet.
+
+## Building
+
+Follow the upstream toolchain requirements in README.md and build.cmd: LLVM/Clang, Ninja, CMake, compatible MSVC build tools/Windows SDK, and the ReXGlue SDK. The launcher build needs the .NET SDK.
+
+Initialize dependencies with `git submodule update --init --recursive`.
+Supply supported `default.xex` and `data/` locally, as documented upstream. They are ignored by Git. Then use `build.cmd -release fable_2` for the native game, or `build.cmd launcher` for the launcher. These commands are documented starting points, not verified local builds.
+
+## Continuing work
+
+1. Establish a reproducible local Release build before changing engine code.
+2. Compare the same gameplay route with a warm shader cache and record frame times.
+3. Keep both tick-rate patches paired; check cloth physics, audio, and save/load behavior.
+4. Track upstream fixes through the `upstream` remote and review changes before merging.
+5. Keep future trilogy launcher work separate from each game's porting work.
+
+Do not commit disc images, game assets, extracted executables, saves, credentials, or generated binaries. Keep the upstream license and attribution when sharing code.

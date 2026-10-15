@@ -66,3 +66,19 @@ thirdparty/android-ndk/
 # --- Historical reference (pre-ReXGlue XenonRecomp configs) -------------------
 XenonRecomp
 TODO.md
+
+# Personal game content and runtime state (all directories)
+*.iso
+*.xex
+*.xvd
+*.god
+*.exe
+*.dll
+saves/
+cache/
+logs/
+*.dmp
+*.before-smoothing
+/fable_2.toml
+/launcher-settings.toml
+/fable2_config.toml

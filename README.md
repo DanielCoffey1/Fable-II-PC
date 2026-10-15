@@ -1,3 +1,19 @@
+# Fable II PC — Daniel's development repository
+
+Personal development branch of [himdo/Fable-2-Recomp](https://github.com/himdo/Fable-2-Recomp), starting from release **1.5.0**, commit `e12f40d7faa30c6c816008135e67fcd94f055824`.
+
+The native recompilation and launcher are upstream work. Original authorship, Git history, and the MIT license are preserved. This repository starts with a local performance profile and development notes; no new engine or port implementation is claimed.
+
+## Current baseline
+
+The upstream Windows v1.5.0 release was run with a supported GOTY USA/Europe disc image. It reached the title screen, and gameplay was reported substantially smoother after enabling a 60 FPS cap, disabling legacy guest-vblank pacing, and enabling both higher tick-rate patches. This is a user-tested configuration, not a benchmark or full-game validation.
+
+See [development notes](docs/PERSONAL_DEVELOPMENT.md) and [the smooth 60 FPS profile](profiles/smooth-60/README.md).
+
+Game content, ISO files, executable dumps, saves, caches, and compiled runtime binaries are excluded. Supply your own supported game content locally.
+
+---
+
 # Fable 2 — ReXGlue Recompiled Project
 First and for most this project was made to test the capabilities of local and open source AI. This project was made using Qwen3.8 27b. After about an hour it got the game running. Then after a large amount of human trial and error I was able to get enough of the functions mapped to be able to complete the game. I currently do not consider this to be fully complete as I have yet to 100% the game. The sha256 of the iso that started this project is: "685a0d3bea9718812f17bcd155907a5359a548b6d3d8342dd2a6c944f45e35ff" and its the Fable 2 GOTY for USA and Europe.
 
@@ -609,3 +625,4 @@ way. Check before committing name changes:
 ```
 python tools/check_manifest_collisions.py
 ```
+
