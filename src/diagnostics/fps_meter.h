@@ -125,8 +125,10 @@ extern "C" void MainRenderLoop_82B9CD68(PPCContext& ctx, uint8_t* base) {
                                .count();
     calls.fetch_add(1, std::memory_order_relaxed);
     int64_t start = window_start_us.load(std::memory_order_relaxed);
-    if (start == 0)
+    if (start == 0) {
       window_start_us.compare_exchange_strong(start, now_us);
+      start = window_start_us.load(std::memory_order_relaxed);
+    }
     const uint64_t n = window_calls.fetch_add(1, std::memory_order_relaxed) + 1;
     if ((now_us - start) >= 5'000'000) {
       window_calls.store(0, std::memory_order_relaxed);
