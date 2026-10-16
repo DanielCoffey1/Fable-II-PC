@@ -1,4 +1,4 @@
-# Fable II PC — Daniel's development repository
+﻿# Fable II PC — Daniel's development repository
 
 Personal development branch of [himdo/Fable-2-Recomp](https://github.com/himdo/Fable-2-Recomp), starting from release **1.5.0**, commit `e12f40d7faa30c6c816008135e67fcd94f055824`.
 
@@ -625,3 +625,7 @@ way. Check before committing name changes:
 ```
 python tools/check_manifest_collisions.py
 ```
+
+## Albion Reborn automated releases
+
+Main-branch fixes are detected by the private Fable III repository's **Build and publish Albion Reborn** workflow on its next scheduled check (every 15 minutes; GitHub may delay schedules). Its private Windows build agent compiles this project from source with matched runtime/renderer patches, then packages tested builds into an Albion Reborn preview update. No source game content is uploaded. The build PC must be awake, online, and signed in. Build failures do not publish an update. Full-game playtesting remains a separate requirement. See Albion Reborn's automated-build documentation and the private Fable III Actions page for logs.
